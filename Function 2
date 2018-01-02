@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h1>Level 1 - Basic</h1>
+
+<p>Functions 2</p>
+
+<form>
+<input type="Number" id="input1">
+<input type="Number" id="input2">
+<input type="Number" id="input3">
+
+<button onclick="add()">Add</button>
+
+</form>
+
+<script> 
+
+ function add() {
+    var input1 = document.getElementById('input1').value;
+    var input2 = document.getElementById('input2').value;
+    var input3 = document.getElementById('input3').value;
+
+    var sum = parseInt(input1) + parseInt(input2) + parseInt(input3);
+    alert(sum);
+  }
+
+</script>
+
+<p></p>
+ 
+<noscript>Sorry, your browser does not support JavaScript!</noscript>
+
+</body>
+</html>
