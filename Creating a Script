@@ -1,0 +1,14 @@
+	<!DOCTYPE html>
+	<html>
+	<body>
+
+	<h1>Creating a Script</h1>
+
+	<p>Nesting a JavaScript code within the html body</p>
+
+	<script> 
+	alert("Hello World!");
+	</script>
+
+	</body>
+	</html>
