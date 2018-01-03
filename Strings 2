@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Page Title</title>
+</head>
+<body>
+
+<h1>Level 1 - Basic</h1>
+<p><strong>Strings 2</strong></p>
+
+<form>
+<input type="Number" id="input1" name="Number">
+<input type="String" id="input2" name="String">
+
+<button onclick="concat()">Concatenate</button>
+
+<p id="p1"></p>
+
+</form>
+
+<script>
+
+function concat() {
+
+var num = document.getElementById("input1").value;
+var str = document.getElementById("input2").value;
+var num_str;
+
+num_str = str + ' ' + num;
+document.getElementById("p1").innerHTML = num_str;
+
+}
+
+</script>
+
+</body>
+</html>
