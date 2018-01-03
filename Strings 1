@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Page Title</title>
+</head>
+<body>
+
+<h1>Level 1 - Basic</h1>
+<p><strong>Strings 2</strong></p>
+
+<p id="p1"></p>
+<p id="p2"></p>
+
+<button type="button" onclick="u()">Upper Case</button>
+
+
+<script>
+
+document.getElementById("p1").innerHTML =  "He said 'My name is Elliott'. ";
+
+function u() {
+
+var lower = "He said 'My name is Elliott'. ";
+var upper= lower.toUpperCase();
+
+document.getElementById("p2").innerHTML = upper;
+return;
+}
+
+</script>
+
+</body>
+</html>
