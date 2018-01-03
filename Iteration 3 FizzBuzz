@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Iteration 3 FizzBuzz</title>
+</head>
+<body>
+
+<button onclick="go()">Start</button>
+
+<p id="output"></p>
+
+
+
+<script> 
+
+ function go() {
+
+var n = 0;
+var x;
+
+var text = ""
+
+for (x=0; x < 100;x++){
+
+n = n + 1;
+
+	if ((n % 3 === 0) && (n % 5 === 0) == true) {
+	   text += n + " FizzBuzz" + "<br>"
+		document.getElementById('output').innerHTML = text;
+	} else if ((n % 5 === 0) == true) {
+    
+     text += n + " Buzz" + "<br>"
+		document.getElementById('output').innerHTML = text;
+        } else if ((n % 3 === 0) == true) {
+          text += n + " Fizz" + "<br>"
+		document.getElementById('output').innerHTML = text;
+        }
+}
+}
+</script>
+
+
+</body>
+</html>
+
+
