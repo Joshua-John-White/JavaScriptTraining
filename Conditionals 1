@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Conditionals 1</title>
+</head>
+<body>
+
+<input type="Number" id="input1" name="Age">
+
+
+<button onclick="isValid()">Is Valid?</button>
+
+<p id="output"></p>
+
+</form>
+
+<script> 
+
+ function isValid() {
+var input1 = document.getElementById('input1').value;
+
+if (input1 < 41 && input1 > 19){
+
+document.getElementById('output').innerHTML = "TRUE";
+}else{
+
+document.getElementById('output').innerHTML = "FALSE";
+}
+}
+</script>
+
+</body>
+</html>
