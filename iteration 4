@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Iteration 4</title>
+</head>
+<body>
+
+<h1>Iteration 4</h1>
+
+
+<input type="Number" id="num">
+<br><br>
+<button onclick="go()">Start</button>
+<br>
+<p id='output'></p>
+<p id='answer'></p>
+
+<script> 
+
+function go() {
+
+	var inputNum = document.getElementById('num').value;
+    var num = parseInt(inputNum);
+    var ans;
+    var text = ""
+    
+    if (num == 1){
+    
+    	text += num + " Number is 1, task complete."
+		 document.getElementById('answer').innerHTML = text;
+         return;
+     }else{
+
+	while (num != 1) {
+      ans = num % 3;
+
+      //document.getElementById('output').innerHTML = "Remainder: " + ans;
+
+        if (ans == 0){
+
+          num = num / 3;
+          text += num + " (Divide by 3)" + "<br>"
+           document.getElementById('answer').innerHTML = text;
+
+        } else if(ans == 2){
+
+          num = num + 1;
+          text += num + " (Addition of 1)" + "<br>"
+          document.getElementById('answer').innerHTML = text 
+          } else if (ans == 1){
+
+          num = num - 1;
+          text += num + " (Subtraction of 1)" + "<br>"
+          document.getElementById('answer').innerHTML = text 
+          }
+          }
+          }
+ }
+
+</script>
+
+</body>
+</html>
