@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Strings 4</title>
+</head>
+<body>
+
+<p></p>
+
+<input type="String" id="str_in">
+
+<button onclick="button()">Submit</button>
+
+<p id="output"></p>
+
+<script>
+function button() {
+    var str = document.getElementById("str_in").value
+    var str_len = str.length;
+ 
+    var x = 0; 
+    
+    var res = str.charAt(0);
+    var count = -1;
+
+    
+   while ( x < (str_len + 1)){
+   
+   var c1 = str.charAt(x);
+   var c2 = str.charAt(x + 1) ;
+   var c3 = str.charAt(x + 2)
+   
+   	if (c1 == c2 && c1 == c3) {
+        count++;
+        document.getElementById("output").innerHTML = count;
+    }
+     x++;
+    }
+    	
+       
+        }
+        
+</script>
+
+</body>
+</html>
