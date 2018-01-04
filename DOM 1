@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<body onload="doit()">
+
+<h1 id="textdata"></h1>
+
+<button id="button1" onclick="button1()">Create paragraph</button>
+<br>
+<input type="String" id="input1" style="visibility:hidden;">
+<br>
+<button style="visibility:hidden;" id="button2" onclick="button2()">Submit</button>
+<br>
+<button onclick="button3()">Clear</button>
+
+
+
+<script>
+var text = document.getElementById("textdata");
+
+function button1() {
+	text.innerHTML = "Insert text into text box.";
+    document.getElementById("input1").style.visibility = "visible"; 
+    document.getElementById("button2").style.visibility = "visible"; 
+    }
+function button2() { 
+ text.innerHTML = document.getElementById("input1").value;
+document.getElementById("button1").style.visibility = "hidden";
+}
+function button3() {
+text.innerHTML = "";
+document.getElementById("input1").value = ""; 
+}
+
+</script>
+
+
+</body>
+</html> 
