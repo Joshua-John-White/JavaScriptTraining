@@ -1,0 +1,89 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+  </head>
+
+  <body>
+
+<input type="string" id="input1" name="House">
+<button onclick="go()">Search</button>
+
+      <header></header>
+
+      <section></section>
+
+    <script>
+    
+   
+    
+    function go() {
+	// Returns the first element named (to search through all css use querySelectorAll)
+    var header = document.querySelector('header');
+    var section = document.querySelector('section');
+    
+	//State URL
+    var requestURL = 'https://raw.githubusercontent.com/ewomackQA/JSONDataRepo/master/kings.json';
+    var request = new XMLHttpRequest();
+    request.open('GET', requestURL);
+	// Make sure to set data type to json otherwise the data will just be text
+    request.responseType = 'json';
+    request.send();
+	//use onload function instead of statechange as this has more controll and statechange could execute prematurly. 
+    request.onload = function() {
+      var kings = request.response;
+    
+      allKings(kings);
+    }
+    
+   
+    
+    function allKings(jsonObj) {
+     
+      var kings = jsonObj;
+      
+      var houseData;
+       var search = document.getElementById('input1').value;
+       
+      // Multiple records so create for loop to go through them
+      for(var i = 0; i < kings.length; i++) {
+      
+      	// <article> tag specifies independent, self-contained content.
+        var Article = document.createElement('article');
+        var H2 = document.createElement('h2');
+        var Para1 = document.createElement('p');
+        var Para2 = document.createElement('p');
+        var Para3 = document.createElement('p');
+      
+        // <ul> tag defines an unordered (bulleted) list. 
+        // Use together with the <li> tag to create unordered lists.
+        var List = document.createElement('ul');
+        
+        H2.textContent = kings[i].nm;
+        Para1.textContent = 'Country: ' + kings[i].cty;
+        Para2.textContent = 'House: ' + kings[i].hse;
+        Para3.textContent = 'Years:' + kings[i].yrs;
+       
+       houseData = kings[i].hse;
+       
+   
+         // update the article before moving to the next iteration   
+        Article.appendChild(H2);
+        Article.appendChild(Para1);
+        Article.appendChild(Para2);
+        Article.appendChild(Para3);
+ 
+        // remember to also update the article otherwise the data will not show
+     
+     if (search == houseData){
+
+     section.appendChild(Article);
+        }
+        }
+      }
+	  
+	  }
+    
+    </script>
+  </body>
+</html>
