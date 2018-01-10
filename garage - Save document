@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Page Title</title>
+</head>
+<body>
+
+<h1>This is a Heading</h1>
+<p>This is a paragraph.</p>
+
+
+<form>
+<input type="String" id="input1" name ="">
+
+<input type="String" id="input2">
+
+<input type="String" id="input3">
+
+
+
+</form>
+
+<p></p>
+<button onclick="add()">Save details</button>
+
+<p></p>
+
+<button onclick="download( filetext, 'myfilename.txt', 'text/plain')">Create file</button>
+
+<script>
+
+var filetext = "yo"
+
+
+
+// Function to download data to a file
+function download(data, filename, type) {
+	//make use of Blob so that a tempary url can be make.
+    var file = new Blob([data], {type: type});
+   
+   
+        var x = document.createElement("a"),
+               
+        url = URL.createObjectURL(file);
+        x.href = url;
+        x.download = filename;
+        document.body.appendChild(x);
+        x.click();
+        setTimeout(function() {
+            document.body.removeChild(x);
+            window.URL.revokeObjectURL(url);  
+       		 }, 0); 
+   		 }
+
+
+
+</script>
+
+
+</body>
+</html>
