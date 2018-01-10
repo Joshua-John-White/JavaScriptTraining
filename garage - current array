@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h1>Jay's Garage</h1>
+
+<p>Car Details</p>
+<p>Make: <input type="String" id="input1" name="make"></p>
+<p>Colour: <input type="String" id="input2" name="colour"></p>
+<p>Registration: <input type="String" id="input3" name="reg"></p>
+<p>Faults: <input type="string" id="input4" name="fault"></p>
+
+<button onclick="add()">Submit</button><button onclick="get()">Fetch</button>
+
+<p id="output"></p>
+<p id="demo"></p>
+<script> 
+
+ function add() {
+    var input1 = document.getElementById('input1').value;
+    var input2 = document.getElementById('input2').value;
+    var input3 = document.getElementById('input3').value;
+	var input4 = document.getElementById('input4').value;
+
+	var cararray = [input1,input2,input3,input4];
+   
+  	var garagearray = [];
+    
+    garagearray.push(cararray);
+    
+ 	 document.getElementById('output').innerHTML = garagearray;
+ 
+//Storing data:
+myObj = garagearray;
+myJSON = JSON.stringify(myObj);
+localStorage.setItem("testJSON", myJSON);
+	
+}
+
+function fetch() {
+
+//Retrieving data:
+text = localStorage.getItem("testJSON");
+obj = JSON.parse(text);
+document.getElementById("demo").innerHTML = obj; 
+}
+
+</script>
+
+
+</body>
+</html>
+
+
