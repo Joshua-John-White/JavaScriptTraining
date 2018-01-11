@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+<style> 
+html { 
+  background: url(https://i.pinimg.com/474x/99/5e/8b/995e8bf5d8eb16f0b2c02f47bbbbcc6e--garage-workshop-animation.jpg) no-repeat center fixed; 
+  background-size: cover;}
+
+input[type=string] {
+    width: 40%;
+    padding: 12px 20px;
+    margin: 4px 0;
+    box-sizing: border-box;
+    border: 1px solid #555;
+    outline: none;}
+
+input[type=string]:focus {
+    background-color: lightblue;}
+
+body { color: white; }
+
+
+</style>
+
+<body>
+<script> var ary = []; var filetext = ary; </script>
+
+
+<h1>Jay's Garage</h1>
+
+<form>
+
+<p>Car Details</p>
+
+  <label for="inputa">Registration Number</label>
+<input type="string" id="inputa">  
+<p>
+<label for="inputb">Model</label>
+<input type="string" id="inputb">
+<p>
+<label for="inputc">Minor Faults</label>
+<input type="number" id="inputc"> 
+
+<label for="inputd">Major Faults</label>
+<input type="number" id="inputd">
+<p> </p>
+</form>
+<p></p>
+
+<button onclick="add()">Submit</button>
+
+<button onclick="show()">Current</button>
+
+<button onclick="remove()">Remove last record</button>
+
+<button onclick="chargeremove()">Charge and remove</button>
+
+<button onclick="download( filetext, 'myfilename.txt', 'text/plain')">Create file</button>
+
+<p></p>
+
+<section></section>
+
+<script> 
+
+	
+    
+     var section = document.querySelector('section');
+    var Article = document.createElement('article');
+     var Para1 = document.createElement('p');
+     var Para2 = document.createElement('p');
+     
+var ary1=[];
+
+ function add() {
+ 
+    var reg = document.getElementById('inputa').value;
+    var make = document.getElementById('inputb').value;  
+    var minfault = document.getElementById('inputc').value;  
+ 	var majfault = document.getElementById('inputd').value;
+ 
+	var ary1 = [reg,make,minfault,majfault];
+  
+    ary.push(ary1);
+    
+    Para1.textContent = " ";
+    Para2.textContent = " ";
+     Article.appendChild(Para1);
+     Article.appendChild(Para2);
+     section.appendChild(Article);
+     
+	 }
+
+ function show() {
+ 	 
+     Para1.textContent = ary;
+     Para2.textContent = "";
+     Article.appendChild(Para1);
+     Article.appendChild(Para2);
+     section.appendChild(Article);
+ 
+	 }
+ 
+ function remove() {
+ 
+ ary.pop();
+
+ 	Para1.textContent = ary;    
+    Para2.textContent = "";
+    Article.appendChild(Para1);
+    Article.appendChild(Para2);
+    section.appendChild(Article);
+ }
+
+function chargeremove() {
+ 
+ 	var x = ary.pop();
+ 	x;
+	
+ 	Para1.textContent = "removed: " + x;   
+    Para2.textContent = "Cost: £" + ((x[2] * 5) + (x[3] *10));
+       
+    Article.appendChild(Para1);
+    Article.appendChild(Para2);
+    section.appendChild(Article);
+ }
+
+
+function download(data, filename, type) {
+	 filetext = ary;
+    var file = new Blob([data], {type: type});
+    var y = document.createElement("a"),
+               
+        url = URL.createObjectURL(file);
+        y.href = url;
+        y.download = filename;
+        document.body.appendChild(y);
+        y.click();
+        setTimeout(function() {
+            document.body.removeChild(y);
+            window.URL.revokeObjectURL(url);  
+       		 }, 0); 
+   		 }
+
+
+</script>
+
+</body>
+</html>
+
