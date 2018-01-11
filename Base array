@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h1></h1>
+
+<p> a: <input type="string" id="inputa"></p>
+<p> b: <input type="string" id="inputb"></p>
+
+<button onclick="add()">Submit</button>
+
+<p id="demo"></p>
+
+
+<script> 
+
+	var ary = [];
+
+ function add() {
+    var a = document.getElementById('inputa').value;
+    var b = document.getElementById('inputb').value;
+   
+	var ary1 = [a,b];
+  
+    alert(ary);
+    ary.push(ary1);
+    
+	document.getElementById("demo").innerHTML = ary1; }
+
+
+
+</script>
+
+
+</body>
+</html>
+
