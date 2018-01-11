@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+
+
+<h1>Jay's Garage</h1>
+
+
+<form>
+<p>Car Details</p>
+
+
+<p> Reg no.: <input type="string" id="inputa"></p>
+<p> Model: <input type="string" id="inputb"></p>
+<p> Minor Faults: <input type="number" id="inputc"></p>
+<p> Major Faults: <input type="number" id="inputd"></p>
+
+<button onclick="add()">Submit</button>
+
+</form>
+<p></p>
+<button onclick="show()">Current</button>
+
+<button onclick="remove()">Remove last record</button>
+
+<button onclick="chargeremove()">Charge and remove</button>
+<p></p>
+
+
+
+<section></section>
+
+
+<script> 
+
+	var ary = [];
+    
+     var section = document.querySelector('section');
+    var Article = document.createElement('article');
+     var Para1 = document.createElement('p');
+     var Para2 = document.createElement('p');
+     
+var ary1=[];
+
+ function add() {
+
+ 
+    var reg = document.getElementById('inputa').value;
+    var make = document.getElementById('inputb').value;  
+     var minfault = document.getElementById('inputc').value;  
+ 	var majfault = document.getElementById('inputd').value;
+ 
+	var ary1 = [reg,make,minfault,majfault];
+  
+    ary.push(ary1);
+    
+    Para1.textContent = " ";
+    Para2.textContent = " ";
+     Article.appendChild(Para1);
+     Article.appendChild(Para2);
+     section.appendChild(Article);
+     
+	 }
+
+ function show() {
+ 	 
+     Para1.textContent = ary;
+     Para2.textContent = "";
+     Article.appendChild(Para1);
+      Article.appendChild(Para2);
+     section.appendChild(Article);
+ 
+	 }
+ 
+ function remove() {
+ 
+ ary.pop();
+
+ 	Para1.textContent = ary;    
+    Para2.textContent = "";
+    Article.appendChild(Para1);
+     Article.appendChild(Para2);
+    section.appendChild(Article);
+ }
+
+function chargeremove() {
+ 
+ 	var x = ary.pop();
+ 	x;
+	
+ 	Para1.textContent = "removed: " + x;   
+    Para2.textContent = "Cost: £" + ((x[2] * 5) + (x[3] *10));
+    
+    
+    Article.appendChild(Para1);
+    Article.appendChild(Para2);
+    section.appendChild(Article);
+ }
+
+
+</script>
+
+
+</body>
+</html>
+
