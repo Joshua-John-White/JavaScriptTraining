@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h1></h1>
+
+<p> a: <input type="string" id="inputa"></p>
+<p> b: <input type="string" id="inputb"></p>
+
+<button onclick="add()">Submit</button>
+
+<button onclick="show()">Current</button>
+
+<button onclick="remove()">Remove last record</button>
+
+<p></p>
+
+<section></section>
+
+
+<script> 
+
+	var ary = [];
+    
+     var section = document.querySelector('section');
+    var Article = document.createElement('article');
+     var Para1 = document.createElement('p');
+     
+
+ function add() {
+    var a = document.getElementById('inputa').value;
+    var b = document.getElementById('inputb').value;   
+	var ary1 = [a,b];
+  
+    ary.push(ary1);
+    
+    Para1.textContent = "";
+     Article.appendChild(Para1);
+     section.appendChild(Article);
+     
+	 }
+
+ function show() {
+ 	 
+     Para1.textContent = ary;
+     Article.appendChild(Para1);
+     section.appendChild(Article);
+ 
+	 }
+ 
+ function remove() {
+ 
+ ary.pop();
+
+ 	Para1.textContent = ary;    
+    Article.appendChild(Para1);
+    section.appendChild(Article);
+ }
+
+</script>
+
+
+</body>
+</html>
+
