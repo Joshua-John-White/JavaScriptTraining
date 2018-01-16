@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<form>
+Select your move type:
+<select id="mv">
+  <option value="nl">Normal</option>
+  <option value="ft">Fighting</option>
+  <option value="fy">Flying</option>
+  <option value="pi">Poison</option>
+  <option value="gd">Ground</option>
+  <option value="rk">Rock</option>
+  <option value="bg">Bug</option>
+  <option value="gh">Ghost</option>
+  <option value="sl">Steel</option>
+  <option value="fr">Fire</option>
+  <option value="wt">Water</option>
+  <option value="gr">Grass</option>
+  <option value="el">Electric</option>
+  <option value="ps">Psychic</option>
+  <option value="ic">Ice</option>
+  <option value="dg">Dragon</option>
+  <option value="dk">Dark</option>
+  <option value="fa">Fairy</option>
+</select>
+
+Select the opponent pokemon type:
+<select id="tp">
+  <option value="nl">Normal</option>
+  <option value="ft">Fighting</option>
+  <option value="fy">Flying</option>
+  <option value="pi">Poison</option>
+  <option value="gd">Ground</option>
+  <option value="rk">Rock</option>
+  <option value="bg">Bug</option>
+  <option value="gh">Ghost</option>
+  <option value="sl">Steel</option>
+  <option value="fr">Fire</option>
+  <option value="wt">Water</option>
+  <option value="gr">Grass</option>
+  <option value="el">Electric</option>
+  <option value="ps">Psychic</option>
+  <option value="ic">Ice</option>
+  <option value="dg">Dragon</option>
+  <option value="dk">Dark</option>
+  <option value="fa">Fairy</option>
+</select>
+
+</form>
+
+
+
+<button type="button" onclick="matchup()">Effectiveness!</button>
+
+<script>
+
+
+
+function matchup() {
+   var move = document.getElementById("mv").value;
+   var type = document.getElementById("tp").value;
+   
+    if (move == 'nl' && type =='rk'){alert('aaa')}
+  else if (move == 'nl' && type =='gh' ){ zero()}
+  else if (move == 'nl' && type =='st' ){ half()}
+   
+   else if (move == 'ft' && type =='nl'){twice()}
+   else if (move == 'ft' && type =='fl' ){ half()}
+   else if (move == 'ft' && type =='pi' ){ half()}
+   else if (move == 'ft' && type =='rk'){twice()}
+    else if (move == 'ft' && type =='bg' ){ half()}
+    else if (move == 'ft' && type =='gh' ){ zero()}
+   else if (move == 'ft' && type =='st'){twice()}
+   else if (move == 'ft' && type =='ps' ){ half()}
+   else if (move == 'ft' && type =='ic'){twice()}
+   else if (move == 'ft' && type =='dg'){twice()}
+   else if (move == 'ft' && type =='fa' ){ half()}
+   
+   else if (move == 'fy' && type 'ft' ==){twice()}
+   else if (move == 'fy' && type 'rk'==){half()}
+   else if (move == 'fy' && type 'bg'==){twice()}
+   else if (move == 'fy' && type =='st'){half()}
+   else if (move == 'fy' && type =='gr'){twice()}
+  else if (move == 'fy' && type =='el'){half()}
+  
+  else if (move == 'pi' && type'pi' ==){half()}
+  else if (move == 'pi' && type'gd' ==){half()}
+  else if (move == 'pi' && type'rk' ==){half()}
+  else if (move == 'pi' && type'gh' ==){half()}
+  else if (move == 'pi' && type'st' ==){zero()}
+  else if (move == 'pi' && type'gr' ==){twice()}
+  else if (move == 'pi' && type'fa' ==){twice()}
+  
+  else if (move == 'gd' && type'fl' ==){zero()}
+  else if (move == 'gd' && type'pi' ==){twice()}
+  else if (move == 'gd' && type'rk' ==){twice()}
+  else if (move == 'gd' && type'bg' ==){half()}
+  else if (move == 'gd' && type'st' ==){twice()}
+  else if (move == 'gd' && type'fr' ==){twice()}
+  else if (move == 'gd' && type'gr' ==){half()}
+  else if (move == 'gd' && type'el' ==){twice()}
+  
+  else if (move == 'rk' && type'ft' ==){half()}
+  else if (move == 'rk' && type'fl' ==){twice()}
+  else if (move == 'rk' && type'gd' ==){half()}
+  else if (move == 'rk' && type'bg' ==){twice()}
+  else if (move == 'rk' && type'st' ==){half()}
+  else if (move == 'rk' && type'fr' ==){twice()}
+  else if (move == 'rk' && type'ic' ==){twice()}
+  
+  else if (move == 'bg' && type'ft' ==){half()}
+  else if (move == 'bg' && type'fl' ==){half()}
+  else if (move == 'bg' && type'pi' ==){half()}
+  else if (move == 'bg' && type'gh' ==){half()}
+  else if (move == 'bg' && type'st' ==){half()}
+  else if (move == 'bg' && type'fr' ==){half()}
+  else if (move == 'bg' && type'gr' ==){twice()}
+  else if (move == 'bg' && type'ic' ==){twice()}
+  else if (move == 'bg' && type'dk' ==){twice()}
+  else if (move == 'bg' && type'fa' ==){half()}
+  
+  else if (move == 'gh' && type'nl' ==){zero()}
+  else if (move == 'gh' && type'gh' ==){twice()}
+  else if (move == 'gh' && type'ps' ==){twice()}
+  else if (move == 'gh' && type'dk' ==){half()}
+  
+  else if (move == 'st' && type'rk' ==){twice()}
+  else if (move == 'st' && type'st' ==){half()}
+  else if (move == 'st' && type'fr' ==){half()}
+  else if (move == 'st' && type'wt' ==){half()}
+  else if (move == 'st' && type'el' ==){half()}
+  else if (move == 'st' && type'ic' ==){twice()}
+  else if (move == 'st' && type'fa' ==){twice()}
+  
+  else if (move == 'fr' && type'rk' ==){half()}
+  else if (move == 'fr' && type'bg' ==){twice()}
+  else if (move == 'fr' && type'st' ==){twice()}
+  else if (move == 'fr' && type'fr' ==){half()}
+  else if (move == 'fr' && type'wt' ==){half()}
+  else if (move == 'fr' && type'gr' ==){twice()}
+  else if (move == 'fr' && type'ic' ==){twice()}
+  else if (move == 'fr' && type'dg' ==){half()}
+  
+  else if (move == 'wt' && type'gd' ==){twice()}
+  else if (move == 'wt' && type'rk' ==){twice()}
+  else if (move == 'wt' && type'fr' ==){twice()}
+  else if (move == 'wt' && type'wt' ==){half()}
+  else if (move == 'wt' && type'gr' ==){half()}
+  else if (move == 'wt' && type'dg' ==){twice()}
+  
+  else if (move == 'gr' && type'fl' ==){half()}
+  else if (move == 'gr' && type'pi' ==){half()}
+  else if (move == 'gr' && type'gd' ==){twice()}
+  else if (move == 'gr' && type'rk' ==){twice()}
+  else if (move == 'gr' && type'bg' ==){half()}
+  else if (move == 'gr' && type'st' ==){half()}
+  else if (move == 'gr' && type'fr' ==){half()}
+  else if (move == 'gr' && type'wt' ==){twice()}
+  else if (move == 'gr' && type'gr' ==){half()}
+  else if (move == 'gr' && type'dg' ==){half()}
+  
+  else if (move == 'el' && type'fl' ==){twice()}
+  else if (move == 'el' && type'gd' ==){zero()}
+  else if (move == 'el' && type'wt' ==){twice()}
+  else if (move == 'el' && type'gr' ==){half()}
+  else if (move == 'el' && type'el' ==){half()}
+  else if (move == 'el' && type'dg' ==){half()}
+  
+  else if (move == 'ps' && type'ft' ==){twice()}
+  else if (move == 'ps' && type'pi' ==){twice()}
+  else if (move == 'ps' && type'st' ==){half()}
+  else if (move == 'ps' && type'ps' ==){half()}
+  else if (move == 'ps' && type'dk' ==){zero()}
+  
+  else if (move == 'ic' && type'fl' ==){twice()}
+  else if (move == 'ic' && type'gd' ==){twice()}
+  else if (move == 'ic' && type'st' ==){half()}
+  else if (move == 'ic' && type'fr' ==){half()}
+  else if (move == 'ic' && type'wt' ==){half()}
+  else if (move == 'ic' && type'gr' ==){twice()}
+  else if (move == 'ic' && type'ic' ==){half()}
+  else if (move == 'ic' && type'dg' ==){twice()}
+  
+  else if (move == 'dg' && type'st' ==){half()}
+  else if (move == 'dg' && type'dg' ==){twice()}
+  else if (move == 'dg' && type'fa' ==){zero()}
+  
+  else if (move == 'dk' && type'ft' ==){half()}
+  else if (move == 'dk' && type'gh' ==){twice)}
+  else if (move == 'dk' && type'el' ==){twice()}
+  else if (move == 'dk' && type'dk' ==){half()}
+  else if (move == 'dk' && type'fa' ==){half()}
+  
+  else if (move == 'fa' && type'ft' ==){twice()}
+  else if (move == 'fa' && type'pi' ==){half()}
+  else if (move == 'fa' && type'st' ==){half()}
+  else if (move == 'fa' && type'fr' ==){half()}
+  else if (move == 'fa' && type'dg' ==){twice()}
+  else if (move == 'fa' && type'dk' ==){twice()}
+  
+  else{ single()}}
+     
+   
+   
+   function zero() {
+   alert('x0');}
+   
+   function half() {
+   alert('x0.5');}
+   
+   function single(){
+   alert('x1')}
+   
+   function twice() {
+   alert('x2');}
+
+</script>
+
+</body>
+</html>
