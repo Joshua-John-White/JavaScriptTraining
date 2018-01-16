@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<form>
+Select your move type:
+<select id="mv">
+  <option value="nl">Normal</option>
+  <option value="ft">Fighting</option>
+  <option value="fy">Flying</option>
+  <option value="pi">Poison</option>
+  <option value="gd">Ground</option>
+  <option value="rk">Rock</option>
+  <option value="bg">Bug</option>
+  <option value="gh">Ghost</option>
+  <option value="sl">Steel</option>
+  <option value="fr">Fire</option>
+  <option value="wt">Water</option>
+  <option value="gr">Grass</option>
+  <option value="el">Electric</option>
+  <option value="ps">Psychic</option>
+  <option value="ic">Ice</option>
+  <option value="dg">Dragon</option>
+  <option value="dk">Dark</option>
+  <option value="fa">Fairy</option>
+</select>
+
+Select the opponent pokemon type:
+<select id="tp">
+  <option value="nl">Normal</option>
+  <option value="ft">Fighting</option>
+  <option value="fy">Flying</option>
+  <option value="pi">Poison</option>
+  <option value="gd">Ground</option>
+  <option value="rk">Rock</option>
+  <option value="bg">Bug</option>
+  <option value="gh">Ghost</option>
+  <option value="sl">Steel</option>
+  <option value="fr">Fire</option>
+  <option value="wt">Water</option>
+  <option value="gr">Grass</option>
+  <option value="el">Electric</option>
+  <option value="ps">Psychic</option>
+  <option value="ic">Ice</option>
+  <option value="dg">Dragon</option>
+  <option value="dk">Dark</option>
+  <option value="fa">Fairy</option>
+</select>
+
+</form>
+
+
+
+<button type="button" onclick="matchup()">Effectiveness!</button>
+
+<script>
+
+
+
+function matchup() {
+   var move = document.getElementById("mv").value;
+   var type = document.getElementById("tp").value;
+   
+   if (move == 'nl') {
+		if(type =='rk'){half()}
+		else if (type =='gh' ){ zero()}
+		else if (type =='st' ){ half()}
+		else {single()}
+   
+   }
+   else if (move == 'ft') {
+    
+		   if (type =='nl'){twice()}
+		   else if (type =='fl' ){ half()}
+		   else if (type =='pi' ){ half()}
+		   else if (type =='rk'){twice()}
+		   else if (type =='bg' ){ half()}
+		   else if (type =='gh' ){ zero()}
+		   else if (type =='st'){twice()}
+		   else if (type =='ps' ){ half()}
+		   else if (type =='ic'){twice()}
+		   else if (type =='dg'){twice()}
+		   else if (type =='fa' ){ half()}
+		   else{single()}}
+	
+	
+   
+   else if (move == 'fy') {
+		if (type == 'ft' ){twice()}
+		else if (type =='rk'){half()}
+		else if (type =='bg'){twice()}
+		else if (type =='st'){half()}
+		else if (type =='gr'){twice()}
+		else if (type =='el'){half()}
+		else{single()}}
+		
+		
+  else if (move == 'pi') { 
+		if(type=='pi' ){half()}
+		  else if (type=='gd' ){half()}
+		  else if (type=='rk' ){half()}
+		  else if (type=='gh' ){half()}
+		  else if (type=='st' ){zero()}
+		  else if (type=='gr' ){twice()}
+		  else if (type=='fa' ){twice()}
+		else{single()}
+		}
+
+   
+  else if (move == 'gd'){
+  if 	(type=='fl' ){zero()}
+  else if (type=='pi' ){twice()}
+  else if (type=='rk' ){twice()}
+  else if (type=='bg' ){half()}
+  else if (type=='st' ){twice()}
+  else if (type=='fr' ){twice()}
+  else if (type=='gr' ){half()}
+  else if (type=='el' ){twice()}
+  else{single()}}
+  
+  
+   
+  else if (move == 'rk') {
+	if (type=='ft' ){half()}
+  else if (type=='fl' ){twice()}
+  else if (type=='gd' ){half()}
+  else if (type=='bg' ){twice()}
+  else if (type=='st' ){half()}
+  else if (type=='fr' ){twice()}
+  else if (type=='ic' ){twice()}
+  else{single}
+  }
+  
+  
+  else if (move == 'bg'){
+
+  if(type=='ft' ){half()}
+  else if (type=='fl' ){half()}
+  else if (type=='pi' ){half()}
+  else if (type=='gh' ){half()}
+  else if (type=='st' ){half()}
+  else if (type=='fr' ){half()}
+  else if (type=='gr' ){twice()}
+  else if (type=='ic' ){twice()}
+  else if (type=='dk' ){twice()}
+  else if (type=='fa' ){half()}
+  else{single()}
+  }
+  
+  
+  else if (move == 'gh'){
+if(type =='nl' ){zero()}
+  else if (type=='gh' ){twice()}
+  else if (type=='ps' ){twice()}
+  else if (type=='dk' ){half()}
+  else{single()}}
+  
+  
+  
+  else if (move == 'st'){
+  if(type=='rk' ){twice()}
+  else if (type=='st' ){half()}
+  else if (type=='fr' ){half()}
+  else if (type=='wt' ){half()}
+  else if (type=='el' ){half()}
+  else if (type=='ic' ){twice()}
+  else if (type=='fa' ){twice()}
+  else{single()}}
+  
+    
+  else if (move == 'fr'){
+if(type=='rk' ){half()}
+  else if (type=='bg'){twice()}
+  else if (type=='st'){twice()}
+  else if (type=='fr'){half()}
+  else if (type=='wt'){half()}
+  else if (type=='gr'){twice()}
+  else if (type=='ic'){twice()}
+  else if (type=='dg'){half()}
+  else{single}}
+  
+    
+  else if (move == 'wt'){
+  
+  if(type=='gd'){twice()}
+  else if (type=='rk' ){twice()}
+  else if (type=='fr' ){twice()}
+  else if (type=='wt' ){half()}
+  else if (type=='gr' ){half()}
+  else if (type=='dg' ){twice()}
+  else{single}}
+     
+  else if (move == 'gr'){
+	if(type=='fl' ){half()}
+  else if (type=='pi' ){half()}
+  else if (type=='gd' ){twice()}
+  else if ( type=='rk' ){twice()}
+  else if (type=='bg' ){half()}
+  else if (type=='st' ){half()}
+  else if (type=='fr' ){half()}
+  else if (type=='wt' ){twice()}
+  else if (type=='gr' ){half()}
+  else if (type=='dg' ){half()}
+  else{single}}
+  
+   
+  else if (move == 'el'){
+if(type=='fl' ){twice()}
+  else if (type=='gd' ){zero()}
+  else if (type=='wt' ){twice()}
+  else if (type=='gr' ){half()}
+  else if (type=='el' ){half()}
+  else if (type=='dg' ){half()}
+  else{single}}
+  
+     
+  else if (move == 'ps'){
+  if(type=='ft' ){twice()}
+  else if (type=='pi' ){twice()}
+  else if (type=='st' ){half()}
+  else if (type=='ps' ){half()}
+  else if (type=='dk' ){zero()}
+  else{single}}
+  
+   
+  else if (move == 'ic'){
+
+  if(type=='fl'){twice()}
+  else if (type=='gd'){twice()}
+  else if (type=='st'){half()}
+  else if (type=='fr'){half()}
+  else if (type=='wt'){half()}
+  else if (type=='gr'){twice()}
+  else if (type=='ic'){half()}
+  else if (type=='dg'){twice()}
+  else{single}}
+ 
+ 
+  else if (move == 'dg'){ 
+  
+ if(type=='st'){half()}
+  else if (type=='dg'){twice()}
+  else if (type=='fa'){zero()}
+  else{single}}
+/*
+  else if (move == 'dk'){
+	if(type=='ft' ){half()}
+ 	 else if (type=='gh' ){twice)}
+  	else if (type=='el' ){twice()}
+  	else if (type=='dk' ){half()}
+  	else if (type=='fa' ){half()}
+  	else{single}}
+/*/
+  else if (move == 'fa'){
+if(type=='ft' ){twice()}
+  else if (type=='pi' ){half()}
+  else if (type=='st' ){half()}
+  else if (type=='fr' ){half()}
+  else if (type=='dg' ){twice()}
+  else if (type=='dk' ){twice()}
+  else{single}}
+
+     }
+   
+   
+   function zero() {
+   alert('x0');}
+   
+   function half() {
+   alert('x0.5');}
+   
+   function single(){
+   alert('x1')}
+   
+   function twice() {
+   alert('x2');}
+
+</script>
+
+</body>
+</html>
