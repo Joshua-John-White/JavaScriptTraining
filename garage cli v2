@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+
+input[type=string] {    
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    padding: 8px 8px;
+    margin: 4px 0;
+    box-sizing: border-box;
+    border: 1px solid #555;
+   }
+
+</style>
+</head>
+
+<body>
+
+<p id="output">Type help for more information</p>
+
+<input type="string" id="inputa">  
+
+</body>
+
+<script>
+var x = 'off';
+var ary =[];
+if (document.layers) {document.captureEvents(Event.KEYDOWN);}
+
+document.onkeydown = function (evt) {
+  	var keyCode = evt ? (evt.which ? evt.which : evt.keyCode) : event.keyCode;
+  	if (keyCode == 13 && x =='off') {
+   		window[document.getElementById('inputa').value]();}
+       
+       else if (keyCode == 13 && x =='on'){
+        var valuea = window[document.getElementById('inputa').value];
+        ary.push(valuea);
+        document.getElementById('output').innerHTML = valuea +' Car added';
+        document.getElementById('inputa').value = '';
+        	
+        
+        
+    } else {
+    	return true;
+  			}
+	};
+
+function help () {
+	document.getElementById('output').innerHTML = 'please type show';
+     document.getElementById('inputa').value = '';
+    }
+
+function show() {
+    document.getElementById('output').innerHTML = 'win';
+     document.getElementById('inputa').value = '';
+    }
+
+function addcar() {
+	x = 'on';
+    document.getElementById('output').innerHTML = 'Please type car model/make' + x;
+     document.getElementById('inputa').value = '';
+   
+        }
+   
+
+</script>
+
+
+
+
+</html>
