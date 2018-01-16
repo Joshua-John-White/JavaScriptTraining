@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+
+input[type=string] {    
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    padding: 8px 8px;
+    margin: 4px 0;
+    box-sizing: border-box;
+    border: 1px solid #555;
+   }
+
+</style>
+</head>
+
+<body>
+
+<p id="output">Type help for more information</p>
+
+<input type="string" id="inputa">  
+
+</body>
+
+<script>
+var x = 'off';
+var a;
+var b;
+var ary =[];
+var ary1 = [];
+
+if (document.layers) {document.captureEvents(Event.KEYDOWN);}
+
+document.onkeydown = function (evt) {
+  	var keyCode = evt ? (evt.which ? evt.which : evt.keyCode) : event.keyCode;
+  
+  if (keyCode == 13 && x =='off') {
+   		window[document.getElementById('inputa').value]();}
+       
+       else if (keyCode == 13 && x =='on'){
+      a = document.getElementById('inputa').value;
+      ary1.push(a);
+     document.getElementById('output').innerHTML += 'Please enter registration number';
+      x ='on1';
+       document.getElementById('inputa').value = '';
+      }
+       
+       else if (keyCode == 13 && x =='on1') {
+        a = document.getElementById('inputa').value;
+      ary1.push(a);
+     document.getElementById('output').innerHTML += 'Please enter number of minor faults';
+      x ='on2';
+       document.getElementById('inputa').value = '';
+      }
+      
+        else if (keyCode == 13 && x =='on2') {
+        a = document.getElementById('inputa').value;
+      ary1.push(a);
+     document.getElementById('output').innerHTML += 'Please enter number of major faults';
+      x ='on3';
+       document.getElementById('inputa').value = '';
+      }
+      
+        else if (keyCode == 13 && x =='on3') {
+        a = document.getElementById('inputa').value;
+      ary1.push(a);
+      ary.push(ary1);
+     document.getElementById('output').innerHTML += 'Complete';
+      x ='off';
+       document.getElementById('inputa').value = '';
+      }
+      
+        
+     else {
+    	return true;
+  			}
+	}
+
+function help () {
+	document.getElementById('output').innerHTML +=  'Commands:\nshow - Shows garage contents\n addcar - add a new car to the garage\n remove - removes last inputted car\n chargeremove - removes the last car and provides total cost';
+     document.getElementById('inputa').value = '';
+    }
+
+function show() {
+    document.getElementById('output').innerHTML = ary;
+     document.getElementById('inputa').value = '';
+    }
+
+function addcar() {
+	x = 'on';
+    document.getElementById('output').innerHTML += 'Please type car model/make' + x;
+     document.getElementById('inputa').value = '';
+   
+        }
+        
+function remove() {
+
+ary.pop();
+ 
+ document.getElementById('inputa').value = '';
+
+}
+
+function chargeremove() {
+ 
+ 	var rm = ary.pop();
+ 	rm;
+
+ 	document.getElementById('output').innerHTML = "removed: " + rm + "Cost: £" + ((rm[2] * 5) + (rm[3] *10));
+       
+   
+ }
+   
+
+</script>
+
+
+
+
+</html>
