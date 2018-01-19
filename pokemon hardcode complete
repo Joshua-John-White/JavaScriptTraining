@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+<style> 
+form { 
+  background: red; 
+   border: 2px solid black;
+    padding: 25px;
+  }
+  
+ p {   border: 2px solid black;
+    padding: 25px; background:lightblue;}
+    
+    div {padding:10px}
+    
+    button { width: 100%; }
+</style>
+
+
+
+<body >
+
+<form>
+Select your move type:
+<select id="mv">
+ <option value="0">Normal</option>
+  <option value="1">Fighting</option>
+  <option value="2">Flying</option>
+  <option value="3">Poison</option>
+  <option value="4">Ground</option>
+  <option value="5">Rock</option>
+  <option value="6">Bug</option>
+  <option value="7">Ghost</option>
+  <option value="8">Steel</option>
+  <option value="9">Fire</option>
+  <option value="10">Water</option>
+  <option value="11">Grass</option>
+  <option value="12">Electric</option>
+  <option value="13">Psychic</option>
+  <option value="14">Ice</option>
+  <option value="15">Dragon</option>
+  <option value="16">Dark</option>
+  <option value="17">Fairy</option>
+</select>
+
+<div>
+Select the opponent pokemon type:
+<select id="tp">
+  <option value="0">Normal</option>
+  <option value="1">Fighting</option>
+  <option value="2">Flying</option>
+  <option value="3">Poison</option>
+  <option value="4">Ground</option>
+  <option value="5">Rock</option>
+  <option value="6">Bug</option>
+  <option value="7">Ghost</option>
+  <option value="8">Steel</option>
+  <option value="9">Fire</option>
+  <option value="10">Water</option>
+  <option value="11">Grass</option>
+  <option value="12">Electric</option>
+  <option value="13">Psychic</option>
+  <option value="14">Ice</option>
+  <option value="15">Dragon</option>
+  <option value="16">Dark</option>
+  <option value="17">Fairy</option>
+</select>
+
+<select id="tp2">
+  <option value="0">Normal</option>
+  <option value="1">Fighting</option>
+  <option value="2">Flying</option>
+  <option value="3">Poison</option>
+  <option value="4">Ground</option>
+  <option value="5">Rock</option>
+  <option value="6">Bug</option>
+  <option value="7">Ghost</option>
+  <option value="8">Steel</option>
+  <option value="9">Fire</option>
+  <option value="10">Water</option>
+  <option value="11">Grass</option>
+  <option value="12">Electric</option>
+  <option value="13">Psychic</option>
+  <option value="14">Ice</option>
+  <option value="15">Dragon</option>
+  <option value="16">Dark</option>
+  <option value="17">Fairy</option>
+</select>
+</div>
+<div>
+<button type="button" onclick="matchup()" >Effectiveness!</button>
+</div>
+
+<p id='output'><strong></strong></p>
+
+</form>
+
+
+
+
+
+
+<script>
+
+var typeTable = [[1,1,1,1,1,0.5,1,0,0.5,1,1,1,1,1,1,1,1,1],
+[2,1,0.5,0.5,1,2,0.5,0,2,1,1,1,1,0.5,2,1,2,0.5],
+[1,2,1,1,1,0.5,2,1,0.5,1,1,2,0.5,1,1,1,1,1],
+[1,1,1,0.5,0.5,0.5,1,0.5,0,1,1,2,1,1,1,1,1,2],
+[1,1,0,2,1,2,0.5,1,2,2,1,0.5,2,1,1,1,1,1],
+[1,0.5,2,1,0.5,1,2,1,0.5,2,1,1,1,1,2,1,1,1],
+[1,0.5,0.5,0.5,1,1,1,0.5,0.5,0.5,1,2,1,2,1,1,2,0.5],
+[0,1,1,1,1,1,1,2,1,1,1,1,1,2,1,1,0.5,1],
+[1,1,1,1,1,2,1,1,0.5,0.5,0.5,1,0.5,1,2,1,1,2],
+[1,1,1,1,1,0.5,2,1,2,0.5,0.5,2,1,1,2,0.5,1,1],
+[1,1,1,1,2,2,1,1,1,2,0.5,0.5,1,1,1,0.5,1,1],
+[1,1,0.5,0.5,2,2,0.5,1,0.5,0.5,2,0.5,1,1,1,0.5,1,1],
+[1,1,2,1,0,1,1,1,1,1,2,0.5,0.5,1,1,0.5,1,1],
+[1,2,1,2,1,1,1,1,0.5,1,1,1,1,0.5,1,1,0,1],
+[1,1,2,1,2,1,1,1,0.5,0.5,0.5,2,1,1,0.5,2,1,1],
+[1,1,1,1,1,1,1,1,0.5,1,1,1,1,1,1,2,1,0],
+[1,0.5,1,1,1,1,1,2,1,1,1,1,1,2,1,1,0.5,0.5],
+[1,2,1,0.5,1,1,1,1,0.5,0.5,1,1,1,1,1,2,2,1]];
+
+
+function matchup() {
+   var m = document.getElementById("mv").value;
+   var t = document.getElementById("tp").value;
+   var tt = document.getElementById("tp2").value;
+   
+   var tp_1 = typeTable[m][t];
+   var tp_2 = typeTable[m][tt];
+   
+   var damage = tp_1 * tp_2;
+   
+   if (damage == 0) {
+   
+   	document.getElementById('output').innerHTML = 'No Effect; Damage multipler: ' + damage;
+   }
+   else if (damage == 1) {
+   
+   	document.getElementById('output').innerHTML = 'Normal effectiveness; Damage multipler: x' + damage;
+   }
+   
+   else if (damage == 2) {
+   
+   	document.getElementById('output').innerHTML = 'Super Effective; Damage multipler: x' + damage;
+   }
+   else if (damage == 4) {
+   
+   	document.getElementById('output').innerHTML = 'Maximum Effect!; Damage multipler: x' + damage;
+   }
+   else if (damage == 0.5) {
+   
+   	document.getElementById('output').innerHTML = 'Not very effective; Damage multipler: x' + damage;
+   }
+   
+   else if (damage == 0.25) {
+   
+   	document.getElementById('output').innerHTML = 'Minimum Effect; Damage multipler: x' + damage;
+   }
+
+}
+</script>
+
+</body>
+</html>
