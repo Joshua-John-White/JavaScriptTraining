@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Page Title</title>
+</head>
+<body>
+
+<h1>Squares</h1>
+<p></p>
+<p id='output'></p>
+
+<label for="input1">Input word</label>
+<input type="string" id="input1">  
+
+<button onclick='go()'>Press</button>
+
+<p id='output2'></p>
+<p id='output3'></p>
+<p id='output4'></p>
+
+<script>
+
+function go() {
+var input = document.getElementById('input1').value;
+var len =input.length;
+
+document.getElementById('output').innerHTML = input + ' Length: ' + len;
+
+var aryTop = [];
+var aryBot = [];
+var aryMid = [' '];
+var s = input;
+var j = len - 1;
+var left = 1;
+var right = len - 2;
+
+for (var i =0; i < s.length; i++) {
+    aryTop.push([s.charAt(i)]);  
+   aryBot.push([s.charAt(j)]);
+    j = j - 1;
+    
+}
+ aryMid.unshift([s.charAt(left)]);
+   aryMid.push([s.charAt(right)]);
+
+document.getElementById('output2').innerHTML = aryTop;
+document.getElementById('output3').innerHTML = aryMid;
+document.getElementById('output4').innerHTML = aryBot;
+
+}
+
+
+
+</script>
+
+</body>
+</html>
