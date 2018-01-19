@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+body {
+    color: lime; 
+    background: black;
+}
+
+input[type=string] {    
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    padding: 8px 8px;
+    margin: 4px 0;
+    box-sizing: border-box;
+    border: 1px solid #000;
+     color: lime; 
+    background: black;
+   }
+   
+
+
+</style>
+</head>
+
+<body>
+
+<p id="output">Type help for more information</p>
+<section></section>
+
+<input type="string" id="inputa">  
+
+</body>
+
+<script>
+var x = 'off';
+var a;
+var b;
+var ary =[];
+var ary1 = [];
+var section = document.querySelector('section');
+var Article = document.createElement('article');
+var Para1 = document.createElement('p');
+var Para2 = document.createElement('p');
+var Para3 = document.createElement('p');
+var Para4 = document.createElement('p');
+var Para5 = document.createElement('p');
+
+if (document.layers) {document.captureEvents(Event.KEYDOWN);}
+
+document.onkeydown = function (evt) {
+  	var keyCode = evt ? (evt.which ? evt.which : evt.keyCode) : event.keyCode;
+  
+  if (keyCode == 13 && x =='off') {
+   		window[document.getElementById('inputa').value]();}
+       
+       else if (keyCode == 13 && x =='on'){
+      a = document.getElementById('inputa').value;
+      ary1.push(a);
+    // document.getElementById('output').innerHTML +=
+       Para1.textContent =  a;
+     Para2.textContent =  'Please enter registration number';
+   			    	Article.appendChild(Para1);  
+                    Article.appendChild(Para2);   
+     				section.appendChild(Article);
+     
+      x ='on1';
+       document.getElementById('inputa').value = '';
+      }
+       
+       else if (keyCode == 13 && x =='on1') {
+        a = document.getElementById('inputa').value;
+      ary1.push(a);
+     Para1.textContent =  a;
+      Para2.textContent =  'Please enter number of minor faults';
+   			    	Article.appendChild(Para1);  
+                    Article.appendChild(Para2);   
+     				section.appendChild(Article);
+      x ='on2';
+       document.getElementById('inputa').value = '';
+      }
+      
+        else if (keyCode == 13 && x =='on2') {
+        a = document.getElementById('inputa').value;
+      ary1.push(a);
+     document.getElementById('output').innerHTML += 
+     Para1.textContent =  a;
+      Para2.textContent =  'Please enter number of major faults';
+   			    	Article.appendChild(Para1);    
+                    Article.appendChild(Para2);   
+     				section.appendChild(Article);
+                    
+      x ='on3';
+       document.getElementById('inputa').value = '';
+      }
+      
+        else if (keyCode == 13 && x =='on3') {
+        a = document.getElementById('inputa').value;
+      ary1.push(a);
+      ary.push(ary1);
+   
+     Para1.textContent =  a;
+      Para2.textContent =  'Complete';
+   			    	Article.appendChild(Para1);    
+                    Article.appendChild(Para2);   
+     				section.appendChild(Article);
+      x ='off';
+       document.getElementById('inputa').value = '';
+      }
+      
+        
+     else {
+    	return true;
+  			}
+	}
+
+function help () {
+
+Para1.textContent =   document.getElementById('inputa').value;
+ Para2.textContent =  'Commands: show - Shows garage contents';
+ Para3.textContent = 'addcar - add a new car to the garage';
+ Para4.textContent = 'remove - removes last inputted car';
+ Para5.textContent = 'chargeremove - removes the last car and provides total cost';
+   			    	Article.appendChild(Para1);     
+     				Article.appendChild(Para2);
+                    Article.appendChild(Para3);
+                    Article.appendChild(Para4);
+                    Article.appendChild(Para5);   
+                    
+                    
+                    section.appendChild(Article);
+
+	
+     document.getElementById('inputa').value = '';
+    }
+
+function show() {
+  
+ Para1.textContent =   document.getElementById('inputa').value;
+     Para2.textContent =  ary;
+   			    	Article.appendChild(Para1);    
+                    Article.appendChild(Para2);   
+     				section.appendChild(Article);
+     document.getElementById('inputa').value = '';
+    }
+
+function addcar() {
+	x = 'on';
+    Para1.textContent =  document.getElementById('inputa').value;
+     Para2.textContent =  'Please type car model/make'
+   			    	Article.appendChild(Para1); 
+                    Article.appendChild(Para2);   
+     				section.appendChild(Article);
+   
+     document.getElementById('inputa').value = '';
+   
+        }
+        
+function remove() {
+
+ary.pop();
+  Para1.textContent =  document.getElementById('inputa').value;
+  Article.appendChild(Para1);     
+     				section.appendChild(Article);
+ document.getElementById('inputa').value = '';
+
+}
+
+function chargeremove() {
+ Para1.textContent =  document.getElementById('inputa').value;
+ 
+ 	var rm = ary.pop();
+ 	rm;
+
+ Para2.textContent =  "removed: " + rm + "Cost: £" + ((rm[2] * 5) + (rm[3] *10));
+   			    	Article.appendChild(Para1);   
+                    Article.appendChild(Para2);   
+     				section.appendChild(Article);
+
+
+       
+   
+ }
+   
+
+</script>
+
+
+
+
+</html>
