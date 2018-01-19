@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h1></h1>
+
+<p><input type="string" id="inputa"></p>
+
+<button onclick="add()">Submit</button>
+
+<p id='output1'></p>
+<p id='output2'></p>
+<p id='output3'></p>
+<p id='output4'></p>
+
+<section></section>
+
+<script> 
+ function add() {
+     
+     var str = document.getElementById('inputa').value;
+     	document.getElementById('output1').innerHTML ='String: ' + str;
+     
+     var res = str.split('');
+     	document.getElementById('output2').innerHTML ='String Split: ' + res;
+    
+     var section = document.querySelector('section');
+     var Article = document.createElement('article');
+     
+  	
+     var len = str.length;
+     var ary = [];
+     
+     var ary1 = []
+     var c = 0;
+     var i = 0;
+     var j = 0;
+     var k = len-2;
+     
+     
+     
+     for (;i < len; i++) {
+     	
+       ary.push(res[i])
+            c++;
+            	if (c == len) {
+                var Para1 = document.createElement('p');
+                 	Para1.textContent = ary;
+   			    	Article.appendChild(Para1);     
+     				section.appendChild(Article);
+            		ary1.push(ary);
+                    j = 1;
+             	}
+           
+          for (; j!=0 && j<len; j++){
+         		 var Para1 = document.createElement('p');
+          		 var aryd = []
+          
+         		 aryd.push(res[j]);
+          		aryd[(len - 1)] = res[k];
+         		 k--;
+          
+          if (j == (len - 1))
+			{
+			   var q = len -1;
+				for (;q > 0; q--) {
+					aryd.unshift(res[q])}
+				 Para1.textContent = aryd;
+				
+				}
+                
+          else {
+          	  Para1.textContent = aryd;
+			  
+                 }
+                 
+                 Article.appendChild(Para1);
+			  section.appendChild(Article);
+     
+ 		document.getElementById('output3').innerHTML ='Array: ' + ary;
+        document.getElementById('output4').innerHTML ='Array1: ' + ary1;
+     
+}
+}
+}
+
+
+
+</script>
+
+
+</body>
+</html>
