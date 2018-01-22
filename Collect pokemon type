@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  </head>
+  <body>
+
+      <section></section>
+
+    <script>
+
+    var section = document.querySelector('section');
+    
+	//State URL
+    var requestURL = 'https://pokeapi.co/api/v2/type/1/';
+    var request = new XMLHttpRequest();
+    request.open('GET', requestURL);
+	
+    request.responseType = 'json';
+    request.send();
+
+    request.onload = function() {
+      var type = request.response;
+    	go(type);
+	}
+    
+    function go(jsonObj) {
+      var para1 = document.createElement('p');
+      para1.textContent = jsonObj['name'];
+      section.appendChild(para1);
+          
+    }
+    
+
+	  
+	  
+    
+    </script>
+  </body>
+</htm
