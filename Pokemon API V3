@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  </head>
+  <body>
+      <header></header>
+      <p id='output'></p>
+      <p id='output1'></p>
+      <section></section>
+    <script>
+	// Returns the first element named (to search through all css use querySelectorAll)
+    var header = document.querySelector('header');
+    var section = document.querySelector('section');
+    document.getElementById('output').innerHTML = 'working'
+	//State URL
+    var requestURL = 'https://pokeapi.co/api/v2/type/1/';
+    var request = new XMLHttpRequest();
+    request.open('GET', requestURL);
+	// Make sure to set data type to json otherwise the data will just be text
+    request.responseType = 'json';
+    request.send();
+	//use onload function instead of statechange as this has more controll and statechange could execute prematurly. 
+    request.onload = function() {
+    
+      var type = request.response;
+      poke(type);
+      go(type);
+    }
+    
+    function poke(jsonObj) {
+      var H1 = document.createElement('h1');
+      H1.textContent = jsonObj['name'];
+      header.appendChild(H1);  
+      document.getElementById('output').innerHTML = 'Header Done';
+    }
+    
+	
+    function go(jsonObj) {
+	
+     document.getElementById('output1').innerHTML = 'body text....loading';
+    
+		var effect = jsonObj['damage_relations'];
+        var i = 0
+			for(; i < effect.length; i++) {
+      
+				var Article = document.createElement('article');
+				var H2 = document.createElement('h2');
+				var Para1 = document.createElement('p');
+				var List = document.createElement('ul');
+        
+				H2.textContent = effect[i];		
+				Para1.textContent = 'Move Type:';
+				
+				var damagetype = damage[i].name;
+       			var j = 0
+					for(; j < damagetype.length; j++) {
+						var listItem = document.createElement('li');
+						listItem.textContent = damagetype[j];
+						List.appendChild(listItem);
+						}
+        
+        Article.appendChild(H2);
+        Article.appendChild(Para1);
+       
+        Article.appendChild(List);
+       
+        section.appendChild(Article);
+      }
+      document.getElementById('output1').innerHTML = 'body text: ERROR';
+      
+	  }	  
+    
+    </script>
+  </body>
+</html>
