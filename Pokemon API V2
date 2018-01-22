@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  </head>
+  <body>
+
+      <section></section>
+
+    <script>
+
+    var section = document.querySelector('section');
+    
+	//State URL
+    var requestURL = 'https://pokeapi.co/api/v2/type/1/';
+    var request = new XMLHttpRequest();
+    request.open('GET', requestURL);
+	
+    request.responseType = 'json';
+    request.send();
+
+    request.onload = function() {
+      var type = request.response;
+    	go(type);
+	}
+    
+    function go(jsonObj) {
+      var para1 = document.createElement('p');
+      para1.textContent = jsonObj['name'];
+      section.appendChild(para1);
+
+
+
+	var damage = jsonObj['damage_relations'];
+      
+     
+       for(var i = 0; i < damage.length; i++) {
+	   
+
+		var Article = document.createElement('article')        
+        var para1 = document.createElement('p');            
+        var List = document.createElement('ul');
+        
+  
+			para1.textContent = 'Damage:';
+        
+		var damagetype = damage[i].name;
+       		
+           for(var j = 0; j < damagetype.length; j++) {
+              var listItem = document.createElement('li');
+              listItem.textContent = damagetype[j];
+              List.appendChild(listItem);
+            }
+        
+        Article.appendChild(Para1);
+        Article.appendChild(List);
+        section.appendChild(Article);
+      }
+    }
+    	  
+	  
+    
+    </script>
+  </body>
+</html>
