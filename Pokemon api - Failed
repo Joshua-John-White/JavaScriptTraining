@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  </head>
+  <body>
+
+      <section></section>
+
+    <script>
+	// Returns the first element named 
+    
+    var section = document.querySelector('section');
+    
+	//State URL
+    var requestURL = 'http://pokeapi.co/api/v2/type/1/';
+    var request = new XMLHttpRequest();
+    request.open('GET', requestURL);
+	// Make sure to set data type to json otherwise the data will just be text
+    request.responseType = 'json';
+    request.send();
+	//use onload function instead of statechange as this has more controll and statechange could execute prematurly. 
+    request.onload = function() {
+      var type = request.response;
+      BodyText(type);
+    }
+    
+    // need to specify jsonObj otherwise will not run correctly
+    // then can call the specific values within the json array data
+
+    
+    function  BodyText(jsonObj) {
+      var dmg = jsonObj['damage_relations'];
+      
+      // Multiple records so create for loop to go through them
+      for(var i = 0; i < dmg.length; i++) {
+      
+      	// <article> tag specifies independent, self-contained content.
+        var Article = document.createElement('article');
+        var H2 = document.createElement('h2');
+        var Para1 = document.createElement('p');
+       
+        var List = document.createElement('ul');
+        
+        H2.textContent = dmg[i];
+        var context = dmg[i];
+        
+        Para1.textContent = 'Damage relation: ' + dmg[i].context;
+       
+              var relations = dmg[i].context;
+                  // multiple superpowers so again need a for loop
+                 for(var j = 0; j < relations.length; j++) {
+                    var listItem = document.createElement('li');
+                    listItem.textContent = relations[j];
+                    List.appendChild(listItem);
+                  }
+         // update the article before moving to the next iteration   
+        Article.appendChild(H2);
+        Article.appendChild(Para1);
+        Article.appendChild(List);
+        // remember to also update the article otherwise the data will not show
+        section.appendChild(Article);
+      }
+	  }
+	  
+    
+    </script>
+  </body>
+</html>
