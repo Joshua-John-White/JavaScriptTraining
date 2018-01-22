@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  </head>
+  <body>
+  
+  <form>
+Select your pokemon type:
+<select id="pk">
+ <option value="0">Normal</option>
+  <option value="1">Fighting</option>
+  <option value="2">Flying</option>
+  <option value="3">Poison</option>
+  <option value="4">Ground</option>
+  <option value="5">Rock</option>
+  <option value="6">Bug</option>
+  <option value="7">Ghost</option>
+  <option value="8">Steel</option>
+  <option value="9">Fire</option>
+  <option value="10">Water</option>
+  <option value="11">Grass</option>
+  <option value="12">Electric</option>
+  <option value="13">Psychic</option>
+  <option value="14">Ice</option>
+  <option value="15">Dragon</option>
+  <option value="16">Dark</option>
+  <option value="17">Fairy</option>
+</select>
+<div>
+<button type="button" onclick="matchup()" >Search</button>
+</div>
+</form>
+  <p id='output'></p>
+      <header></header>     
+      <section></section>
+  
+  
+  <script>
+	// Returns the first element named (to search through all css use querySelectorAll)
+    var header = document.querySelector('header');
+    var section = document.querySelector('section');
+   
+   
+    
+    function matchup() {
+     document.getElementById('output').innerHTML = 'Loading';
+   	var choosen = document.getElementById('pk').value;
+    choosenval = parseInt(choosen)
+    var address = choosenval + 1;
+	//State URL
+    var requestURL = 'https://pokeapi.co/api/v2/type/' + address + '/';
+    var request = new XMLHttpRequest();
+    request.open('GET', requestURL);
+	// Make sure to set data type to json otherwise the data will just be text
+    request.responseType = 'json';
+    request.send();
+	//use onload function instead of statechange as this has more controll and statechange could execute prematurly. 
+     request.onload = function() {
+
+      var type = request.response;
+      poke(type);
+      go(type);
+    }}
+    
+    function poke(jsonObj) {
+      var H1 = document.createElement('h1');
+      H1.textContent = jsonObj['name'];
+      header.appendChild(H1);  
+      
+    }
+    
+	function go(jsonObj) {
+	
+    
+    
+				var dmg = jsonObj['damage_relations'];
+              	 
+                var halfdmg = dmg.half_damage_from;
+                var nodmg = dmg.no_damage_from;
+                var dobdmg = dmg.double_damage_from;
+	
+				var Article = document.createElement('article');
+				var H2 = document.createElement('h3');
+				var Para1 = document.createElement('p');
+				var List = document.createElement('ul');
+         
+				H2.textContent = 'Half damage from:';	
+                Article.appendChild(H2);
+				Para1.textContent = 'Move Type:';
+				
+					for(i = 0; i < halfdmg.length; i++) {
+						var listItem = document.createElement('li');
+                    
+						listItem.textContent = halfdmg[i].name;
+						List.appendChild(listItem);
+						}
+          Article.appendChild(Para1);
+        Article.appendChild(List);
+        section.appendChild(Article);
+      
+       
+        		var H3 = document.createElement('h3');
+				var para2 = document.createElement('p');
+				var List2 = document.createElement('ul');
+     
+            
+				H3.textContent = 'No damage from:';	
+                Article.appendChild(H3);
+				para2.textContent = 'Move Type:';
+				
+					for(j = 0; j < nodmg.length; j++) {
+						var listItem2 = document.createElement('li');
+                    
+						listItem2.textContent = nodmg[j].name;
+						List2.appendChild(listItem2);
+						}
+        
+         Article.appendChild(para2);
+        Article.appendChild(List2);
+        section.appendChild(Article);
+      
+     
+      var H4 = document.createElement('h3');
+				var para3 = document.createElement('p');
+				var List3 = document.createElement('ul');
+     
+            
+				H4.textContent = 'Double damage from:';	
+                Article.appendChild(H4);
+				para3.textContent = 'Move Type:';
+				
+					for(k = 0; k < dobdmg.length; k++) {
+						var listItem3 = document.createElement('li');
+                    
+						listItem3.textContent = dobdmg[k].name;
+						List3.appendChild(listItem3);
+						}
+        
+         Article.appendChild(para3);
+        Article.appendChild(List3);
+        section.appendChild(Article);
+        document.getElementById('output').innerHTML = '';
+	  }	  
+  
+    
+    </script>
+  </body>
+</html>
