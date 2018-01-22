@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h> JSON 1 </h>
+
+<p id="demo"></p>
+
+<script>
+
+var xmlhttp;
+
+
+xmlhttp = new XMLHttpRequest();
+xmlhttp.onreadystatechange = function() {
+      document.getElementById("demo").innerHTML = this.responseText;};
+
+xmlhttp.open("GET", "https://pokeapi.co/api/v2/type/1/");
+xmlhttp.send();
+
+
+</script>
