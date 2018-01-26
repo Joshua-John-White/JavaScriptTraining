@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  </head>
+
+  <body>
+
+
+	<p><input type="string" id="inputa"><button onclick="go()">Go</button></p>
+	<p id='output'></p>
+
+
+    <script>
+
+
+function go(){
+
+    var inputa = document.getElementById('inputa').value;
+
+    // Promise
+    var whosthere = new Promise(
+        function (resolve, reject) {
+            if (inputa == 'josh' ) {
+                var greet = 'Hello Joshua';
+                resolve(greet); // fulfilled
+            } else {
+                var fail = new Error('You are not Joshua');
+                
+                reject(fail); // reject
+            }
+
+        }
+    );
+    // call our promise
+var run = function () {
+    whosthere.then(function (fulfilled) {
+    
+            document.getElementById('output').innerHTML = fulfilled;
+      
+        })
+        .catch(function (error) {
+ 
+            document.getElementById('output').innerHTML = error.message;
+      
+        });
+};
+
+run();
+
+
+}
+    </script>
+  </body>
+</html>
