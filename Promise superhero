@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  </head>
+
+  <body>
+
+
+      <header style="color:blue;" ></header>
+	<p id='status'></p>
+      <section></section>
+
+    <script>
+	// Returns the first element named (to search through all css use querySelectorAll)
+    var header = document.querySelector('header');
+    var section = document.querySelector('section');
+    
+	//check promise is supported 
+	if (window.Promise) {
+	  
+	  //created doc outputs so i cou;d track where the scrpit was failing
+	 document.getElementById('status').innerHTML='Promise found';
+	
+	//create new promise
+	  var promise = new Promise(function(resolve, reject) {
+	 
+	
+	
+	//State URL
+    var requestURL = 'https://raw.githubusercontent.com/ewomackQA/JSONDataRepo/master/example.json';
+	//Tried a direct url in the request.open however this caused some issues so went back to creating a variable
+    var request = new XMLHttpRequest();
+    request.open('GET', requestURL);
+	// Make sure to set data type to json otherwise the data will just be text
+    request.responseType = 'json';
+  
+	//use onload function instead of statechange as this has more controll and statechange could execute prematurly. 
+    request.onload = function() {
+      
+	  // status 200 ok
+	   if (request.status == 200) {
+				resolve(request.response); // we got data here, so resolve the Promise
+			  } else {
+				reject(Error(request.statusText)); // status is not 200 OK, so reject
+				}
+			};
+	  	request.onerror = function() {
+				reject(Error('Error fetching data.')); // error occurred, reject the  Promise
+				};
+
+			request.send(); //send the request
+	  });
+	 
+    
+    document.getElementById('status').innerHTML += 'Asynchronous request made.';
+	
+	promise.then(function(data) {
+				 document.getElementById('status').innerHTML += 'Got data! Promise fulfilled.';
+				 var superHeroes = data;
+					Header(superHeroes);
+					Heroes(superHeroes);
+                     document.getElementById('status').innerHTML = '';
+				}, function(error) {
+				alert('Promise rejected.'+ error.message);
+				
+				});
+	
+	
+	
+    // need to specify jsonObj otherwise will not run correctly
+    // then can call the specific values within the json array data
+    function Header(jsonObj) {
+      var H1 = document.createElement('h1');
+      H1.textContent = jsonObj['squadName'];
+      header.appendChild(H1);
+      
+      var p1 = document.createElement('p1');
+      // set attribute otherwise /n does not create line break
+     p1.setAttribute('style', 'white-space: pre;');
+      p1.textContent = 'Hometown: ' + jsonObj['homeTown'] + '\nFormed: ' + jsonObj['formed']; 
+      header.appendChild(p1);
+    
+    }
+    
+    function Heroes(jsonObj) {
+      var heroes = jsonObj['members'];
+      
+      // Multiple records so create for loop to go through them
+      for(var i = 0; i < heroes.length; i++) {
+      
+      	// <article> tag specifies independent, self-contained content.
+        var Article = document.createElement('article');
+        var H2 = document.createElement('h2');
+        var Para1 = document.createElement('p');
+        var Para2 = document.createElement('p');
+        var Para3 = document.createElement('p');
+        // <ul> tag defines an unordered (bulleted) list. 
+        // Use together with the <li> tag to create unordered lists.
+        var List = document.createElement('ul');
+        
+        H2.textContent = heroes[i].name;
+        Para1.textContent = 'Secret identity: ' + heroes[i].secretIdentity;
+        Para2.textContent = 'Age: ' + heroes[i].age;
+        Para3.textContent = 'Superpowers:';
+        var superPowers = heroes[i].powers;
+       		// multiple superpowers so again need a for loop
+           for(var j = 0; j < superPowers.length; j++) {
+              var listItem = document.createElement('li');
+              listItem.textContent = superPowers[j];
+              List.appendChild(listItem);
+            }
+         // update the article before moving to the next iteration   
+        Article.appendChild(H2);
+        Article.appendChild(Para1);
+        Article.appendChild(Para2);
+        Article.appendChild(Para3);
+        Article.appendChild(List);
+        // remember to also update the article otherwise the data will not show
+        section.appendChild(Article);
+      }
+	  }
+	  }
+	  else {
+  console.log('Promise not available');
+}
+    
+    </script>
+  </body>
+</html>
