@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+  
+<form>
+Select your pokemon type:
+<select id="pk">
+	<option value="0">Normal</option>
+	<option value="1">Fighting</option>
+	<option value="2">Flying</option>
+	<option value="3">Poison</option>
+	<option value="4">Ground</option>
+	<option value="5">Rock</option>
+	<option value="6">Bug</option>
+	<option value="7">Ghost</option>
+	<option value="8">Steel</option>
+	<option value="9">Fire</option>
+	<option value="10">Water</option>
+	<option value="11">Grass</option>
+	<option value="12">Electric</option>
+	<option value="13">Psychic</option>
+	<option value="14">Ice</option>
+	<option value="15">Dragon</option>
+	<option value="16">Dark</option>
+	<option value="17">Fairy</option>
+</select>
+
+<select id="pk2">
+	<option value=" "></option>
+	<option value="0">Normal</option>
+	<option value="1">Fighting</option>
+	<option value="2">Flying</option>
+	<option value="3">Poison</option>
+	<option value="4">Ground</option>
+	<option value="5">Rock</option>
+	<option value="6">Bug</option>
+	<option value="7">Ghost</option>
+	<option value="8">Steel</option>
+	<option value="9">Fire</option>
+	<option value="10">Water</option>
+	<option value="11">Grass</option>
+	<option value="12">Electric</option>
+	<option value="13">Psychic</option>
+	<option value="14">Ice</option>
+	<option value="15">Dragon</option>
+	<option value="16">Dark</option>
+	<option value="17">Fairy</option>
+</select>
+<div>
+<br>
+
+Select Oppenents move type:
+<select id="mvt">
+	<option value="normal">Normal</option>
+	<option value="fighting">Fighting</option>
+	<option value="flying">Flying</option>
+	<option value="poison">Poison</option>
+	<option value="ground">Ground</option>
+	<option value="rock">Rock</option>
+	<option value="bug">Bug</option>
+	<option value="ghost">Ghost</option>
+	<option value="steel">Steel</option>
+	<option value="fire">Fire</option>
+	<option value="water">Water</option>
+	<option value="grass">Grass</option>
+	<option value="electric">Electric</option>
+	<option value="psychic">Psychic</option>
+	<option value="ice">Ice</option>
+	<option value="dragon">Dragon</option>
+	<option value="dark">Dark</option>
+	<option value="fairy">Fairy</option>
+</select>
+</div>
+<br>
+<div>
+<button type="button" onclick="matchup()" >Search</button>
+</div>
+</form>
+<p id='output'></p>
+
+<p id='output1'></p>
+
+<p id='output2'> </p>  
+
+  
+<script>
+
+
+
+
+var move = document.getElementById('mvt').value;
+ var totval = 1;
+ 
+ 
+ var promise = new Promise(function(resolve, reject) {
+ 
+	function matchup() {
+		document.getElementById('output').innerHTML = 'Loading';
+		
+        var choosen = document.getElementById('pk').value;
+		var choosenval = parseInt(choosen)
+		var address = choosenval + 1;
+	
+		var requestURL = 'https://pokeapi.co/api/v2/type/' + address + '/';
+		var request = new XMLHttpRequest();
+		
+        request.open('GET', requestURL);	
+		request.responseType = 'json';
+		request.send();
+	
+		
+			
+			
+		  request.onload = function() {
+      
+			// status 200 ok
+			if (request.status == 200) {
+				resolve(request.response); // we got data here, so resolve the Promise
+			  } else {
+				reject(Error(request.statusText)); // status is not 200 OK, so reject
+				}
+			};
+	  	request.onerror = function() {
+				reject(Error('Error fetching data.')); // error occurred, reject the  Promise
+				};
+
+			request.send(); //send the request
+	  });	
+			
+			promise.then(function(data) {
+				 document.getElementById('status').innerHTML += 'Got data! Promise fulfilled.';
+				 var type = data;
+					
+			poke(type);
+			go(type);
+            matchup2();
+            
+            
+            cal(totval);
+             document.getElementById('output').innerHTML = '';
+				}, function(error) {
+				alert('Promise rejected.'+ error.message);
+				
+				});	
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+	
+    
+    function poke(jsonObj) {	
+		document.getElementById('output1').innerHTML += jsonObj['name'] + ' ';       
+ 	}
+    
+	function go(jsonObj) {
+   
+		var dmg = jsonObj['damage_relations'];              	 
+        var halfdmg = dmg.half_damage_from;
+        var nodmg = dmg.no_damage_from;
+        var dobdmg = dmg.double_damage_from;
+		var move = document.getElementById('mvt').value;
+		
+   
+		// Half damage	
+       			for(i = 0; i < halfdmg.length; i++) {
+					var halfdmgName = halfdmg[i].name;
+					if (move == halfdmgName) {totval = totval * 0.5;}
+				}
+           
+		// No damage		
+				for(j = 0; j < nodmg.length; j++) {
+					var nodmgName = nodmg[j].name;
+                	if (move == nodmgName) {totval = 0;}
+				}
+            
+		// Double damage
+				for(k = 0; k < dobdmg.length; k++) {
+					var dobdmgName =    dobdmg[k].name;
+                 	if (move == dobdmgName){totval = totval * 2;}
+			     }	  
+     }
+  
+    function matchup2() {
+		document.getElementById('output').innerHTML = 'Loading';
+		var choosen = document.getElementById('pk2').value;
+		var choosenval = parseInt(choosen)
+		var address = choosenval + 1;	
+		var requestURL = 'https://pokeapi.co/api/v2/type/' + address + '/';
+		var request = new XMLHttpRequest();
+		request.open('GET', requestURL);	
+		request.responseType = 'json';
+		request.send();
+	
+		request.onload = function() {
+
+			var type = request.response;
+			poke(type);
+			go(type);
+			}
+	}
+    
+    function cal() {
+        if (totval == 0) {document.getElementById('output2').innerHTML = 'No Effect; Damage multipler: ' + totval;}
+		else if (totval == 1) {document.getElementById('output2').innerHTML = 'Normal effectiveness; Damage multipler: x' + totval;}
+		else if (totval == 2) {document.getElementById('output2').innerHTML = 'Super Effective; Damage multipler: x' + totval;}
+		else if (totval == 4) {document.getElementById('output2').innerHTML = 'Maximum Effect!; Damage multipler: x' + totval;}
+		else if (totval == 0.5) {document.getElementById('output2').innerHTML = 'Not very effective; Damage multipler: x' + totval;}  
+		else if (totval == 0.25) {document.getElementById('output2').innerHTML = 'Minimum Effect; Damage multipler: x' + totval;}
+   `}
+     
+}
+	  else {
+  console.log('Promise not available');
+}	 
+        
+    
+    </script>
+  </body>
+</html>
