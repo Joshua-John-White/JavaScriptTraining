@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Exercise 2</title>
+<link rel="stylesheet" href="ex2.css">
+</head>
+<style>
+#notes {border: 1px solid #999; width: 500px; height: 300px; overflow: scroll; overflow-y: scroll; overflow-x: hidden;}
+#notes.active {border: 1px solid yellow;}
+.note {display: block;	font-size: 16px; line-height: 23px; color: #006; padding: 4px 8px; text-decoration: none;}
+.note:nth-child(odd) {background-color: #def;}
+.note:nth-child(even) {background-color: #fff;}
+.note.highlighted {background-color: yellow;}
+#help {display: none; position: absolute; left: 50px; top: 25px; width: 200px; border: 2px solid #000; background-color: #eee;	padding: 15px;}
+#help .note {cursor: default;}
+</style>
+
+<body>
+
+<h1>Exercise 2</h1>
+
+<div id="help">
+	<p><strong>Instructions:</strong> Add notes to the list by typing into the text box and clicking "Add".</p>
+	<p>	Ex:	<a class="note" href="#">Some notes taken</a> </p>
+</div>
+
+<p><input id="open_help" type="button" value="Help"></p>
+
+<input id="note" size="75"> <input id="add_note" type="button" value="Add">
+
+<div id="notes"></div>
+
+<script src="https://cdn.rawgit.com/ewomackQA/JavaScript-Exercises/master/ex2/jquery.js"></script>
+
+<script>
+// assume this data came from the database
+
+
+
+var notes = [
+	"This is the first note I've taken!",
+	"Now is the time for all good men to come to the aid of their country.",
+	"The quick brown fox jumped over the moon."
+];
+
+
+
+
+
+function addNote(note) {
+	$("#notes").prepend(
+		$("<a href='#'></a>")
+		.addClass("note")
+		.text(note)
+	);
+}
+
+function addCurrentNote() {
+	var current_note = $("#note").val();
+
+	if (current_note) {
+		notes.push(current_note);
+		addNote(current_note);
+		$("#note").val("");
+	}
+}
+
+function showHelp() {
+	$("#help").show();
+
+	document.addEventListener("click",function __handler__(evt){
+		evt.preventDefault();
+		evt.stopPropagation();
+		evt.stopImmediatePropagation();
+
+		document.removeEventListener("click",__handler__,true);
+		hideHelp();
+	},true);
+}
+
+function hideHelp() {
+	$("#help").hide();
+}
+
+function handleOpenHelp(evt) {
+	if (!$("#help").is(":visible")) {
+		evt.preventDefault();
+		evt.stopPropagation();
+
+		showHelp();
+	}
+}
+
+function handleAddNote(evt) {
+	addCurrentNote();
+}
+
+////////////////////////////////////////////////////////////
+//this function doesnt work. Try the below 
+/*
+  if (document.layers) {document.captureEvents(Event.KEYDOWN);}
+  document.onkeydown = function (evt) {
+  var keyCode = evt ? (evt.which ? evt.which : evt.keyCode) : event.keyCode;
+  if (keyCode == 13) {addCurrentNote();}};
+*/
+/////////////////////////////////////
+
+function handleEnter(evt) {
+	if (evt.which == 13) {
+		addCurrentNote();
+	}
+}
+
+function handleDocumentClick(evt) {
+	$("#notes").removeClass("active");
+	$("#notes").children(".note").removeClass("highlighted");
+}
+
+function handleNoteClick(evt) {
+	evt.preventDefault();
+	evt.stopPropagation();
+
+	$("#notes").addClass("active");
+	$("#notes").children(".note").removeClass("highlighted");
+	$(evt.target).addClass("highlighted");
+}
+
+function init() {
+	// build the initial list from the existing `notes` data
+	var html = "";
+	for (i=0; i<notes.length; i++) {
+		html += "<a href='#' class='note'>" + notes[i] + "</a>";
+	}
+	$("#notes").html(html);
+
+	// listen to "help" button
+	$("#open_help").bind("click",handleOpenHelp);
+
+	// listen to "add" button
+	$("#add_note").bind("click",handleAddNote);
+
+	// listen for <enter> in text box
+	$("#new_note").bind("keypress",handleEnter);
+
+	// listen for clicks outside the notes box
+	$(document).bind("click",handleDocumentClick);
+
+	// listen for clicks on note elements
+	$("#notes").on("click",".note",handleNoteClick);
+}
+
+
+
+
+$(document).ready(init);
+</script>
+
+
+</body>
+</html>
