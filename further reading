@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+
+.minitab {overflow: hidden; border: 1px solid #ccc; background-color: #f1f1f1;
+}
+
+/* Style the buttons inside the tab */
+.minitab button {background-color: inherit; float: left; cursor: pointer;
+    padding: 14px 16px; transition: 0.3s; font-size: 17px;}
+
+.minitab button:hover {background-color: #ddd;}
+
+.minitab button.active {background-color: #ccc;}
+
+/* Style the tab content */
+.minitabcontent {
+    display: none; padding: 6px 12px; border: 1px solid #ccc; border-top: none;
+}
+</style>
+
+<style>
+* {box-sizing: border-box}
+
+/* Set height of body and the document to 100% */
+body, html {
+    height: 100%;
+    margin: 0;
+    font-family: Arial;
+}
+
+/* Style tab links */
+.tablink {
+    background-color: #000; color: white; float: left; border: none;
+    outline: none; cursor: pointer; padding: 14px 16px; font-size: 17px;
+    width: 50%;
+}
+
+.tablink:hover {
+    background-color: #777;
+}
+
+/* Style the tab content (and add height:100% for full page content) */
+.tabcontent {
+    color: white;
+    display: none;
+    padding: 100px 20px;
+    height: 100%;
+}
+
+#Tab1 {background-color: lime;}
+#Tab2 {background-color: yellow;}
+
+</style>
+</head>
+<body>
+
+<button class="tablink" onclick="openPage('Tab1')">Tab1</button>
+<button class="tablink" onclick="openPage('Tab2')" id="hmpg">Tab2</button>
+
+
+<div id="Tab1" class="tabcontent">
+ <h3>Click on the buttons inside the tabbed menu:</h3>
+
+<div class="tab">
+  <button class="minitablinks" onclick="openCity(event, 'minitab1')">Mini Tab 1</button>
+  <button class="minitablinks" onclick="openCity(event, 'minitab2')">Mini Tab 2</button>
+  
+</div>
+
+<div id="minitab1" class="minitabcontent">
+  <h3>Mini Tab 1</h3>
+  <p>Random info</p>
+</div>
+
+<div id="minitab2" class="minitabcontent">
+  <h3>Mini Tab2</h3>
+  <p>More Random info</p> 
+</div>
+</div>
+
+<div id="Tab2" class="tabcontent">
+  <h3>Upload</h3>
+ <input type="file" id="files" name="files[]" multiple />
+<output id="list"></output>
+</div>
+
+
+<script>
+function openPage(pageName,elmnt,color) {
+    var i, tabcontent, tablinks;
+    tabcontent = document.getElementsByClassName("tabcontent");
+    for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = "none";
+    }
+    tablinks = document.getElementsByClassName("tablink");
+    for (i = 0; i < tablinks.length; i++) {
+        tablinks[i].style.backgroundColor = "";
+    }
+    document.getElementById(pageName).style.display = "block";
+    elmnt.style.backgroundColor = color;
+
+}
+// Get the element with id="defaultOpen" and click on it
+document.getElementById("hmpg").click();
+</script>
+
+<script>
+function openCity(evt, cityName) {
+    var i, minitabcontent, minitablinks;
+    minitabcontent = document.getElementsByClassName("minitabcontent");
+    for (i = 0; i < minitabcontent.length; i++) {
+        minitabcontent[i].style.display = "none";
+    }
+    minitablinks = document.getElementsByClassName("minitablinks");
+    for (i = 0; i < minitablinks.length; i++) {
+        minitablinks[i].className = minitablinks[i].className.replace(" active", "");
+    }
+    document.getElementById(cityName).style.display = "block";
+    evt.currentTarget.className += " active";
+}
+</script>
+<script>
+  function handleFileSelect(evt) {
+    var files = evt.target.files; // FileList object
+
+    // files is a FileList of File objects. List some properties.
+    var output = [];
+    for (var i = 0, f; f = files[i]; i++) {
+      output.push('<li><strong>', escape(f.name), '</strong> (', f.type || 'n/a', ') - ',
+                  f.size, ' bytes, last modified: ',
+                  f.lastModifiedDate ? f.lastModifiedDate.toLocaleDateString() : 'n/a',
+                  '</li>');
+    }
+    document.getElementById('list').innerHTML = '<ul>' + output.join('') + '</ul>';
+  }
+
+  document.getElementById('files').addEventListener('change', handleFileSelect, false);
+</script>
+
+</body>
+</html> 
