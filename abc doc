@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Exercise 1</title>
+</head>
+<body>
+<h1>Exercise 1</h1>
+<p1 id='demo'></p1>
+
+<script>
+
+function C() {
+	document.getElementById('demo').innerHTML += "OOPS!";
+}
+
+function E(f) {
+	document.getElementById('demo').innerHTML += "E";
+	
+	var f = F;
+    f();
+}
+
+var A = function() {
+	document.getElementById('demo').innerHTML += "A";
+	B();
+};
+
+var C;
+
+function G() {
+	document.getElementById('demo').innerHTML += "G";
+	var H = function() {
+		document.getElementById('demo').innerHTML += "H";
+		I();
+	};
+    H();
+}
+
+var D = d;
+
+function d() {
+	document.getElementById('demo').innerHTML += "D";
+	E();
+}
+
+function I() {
+	document.getElementById('demo').innerHTML += "I";
+	J();
+	J();
+}
+
+B = function() {
+	document.getElementById('demo').innerHTML += "B";
+	C();
+};
+
+var F = function() {
+	document.getElementById('demo').innerHTML += "F";
+	G();
+};
+
+var rest = "KLMNOPQRSTUVWXYZ".split("");
+var K = function(){
+	for (var i=0; i<rest.length; i++) {
+	(function(I){
+		// define the current function
+			
+			document.getElementById('demo').innerHTML += rest[i];
+			if (i < (rest.length-1)) {
+				// TODO: call the next function
+			
+		};
+	})(I);
+	}}
+
+var J = function() {
+	J = function() {
+		document.getElementById('demo').innerHTML += "J";
+		K();
+	};
+};
+
+C = function() {
+	document.getElementById('demo').innerHTML += "C";
+	D();
+};
+
+A();
+
+</script>
+</body>
+</html>
