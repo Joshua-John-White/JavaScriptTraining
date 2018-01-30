@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -50,34 +50,52 @@ body, html {
     height: 100%;
 }
 
-#Tab1 {background-color: lime;}
-#Tab2 {background-color: yellow;}
+#Tab1 {background-color: blue;}
+#Tab2 {background-color: red;}
 
 </style>
 </head>
 <body>
-
-<button class="tablink" onclick="openPage('Tab1')">Tab1</button>
-<button class="tablink" onclick="openPage('Tab2')" id="hmpg">Tab2</button>
+<script> var arr = []; var filetext = arr; </script>
+<button class="tablink" onclick="openPage('Tab1')"id="hmpg">Tab1</button>
+<button class="tablink" onclick="openPage('Tab2')" >Tab2</button>
 
 
 <div id="Tab1" class="tabcontent">
  <h3>Click on the buttons inside the tabbed menu:</h3>
 
 <div class="tab">
-  <button class="minitablinks" onclick="openCity(event, 'minitab1')">Mini Tab 1</button>
-  <button class="minitablinks" onclick="openCity(event, 'minitab2')">Mini Tab 2</button>
+  <button class="minitablinks" onclick="openmini(event, 'minitab1')">Mini Tab 1</button>
+  <button class="minitablinks" onclick="openmini(event, 'minitab2')">Mini Tab 2</button>
   
 </div>
 
 <div id="minitab1" class="minitabcontent">
-  <h3>Mini Tab 1</h3>
-  <p>Random info</p>
+
+
+<form>
+ 
+ <fieldset name ="numbers;" style="width:20%;" float = "left;">
+    <legend>Numbers</legend>
+
+  <label for="num1">No.1</label>
+<input type="number" id="num1" style="width:40px">
+<br>
+ <label for="num2">No.2</label>
+<input type="number" id="num2" style="width:40px">
+<br>
+  <label for="num3">No.3</label>
+<input type="number" id="num3" style="width:40px">
+</fieldset>
+</form>
+
 </div>
 
 <div id="minitab2" class="minitabcontent">
-  <h3>Mini Tab2</h3>
-  <p>More Random info</p> 
+  <h3>Words</h3>
+  <p><textarea rows="4" id="words">
+Input text here
+</textarea></p> 
 </div>
 </div>
 
@@ -85,6 +103,9 @@ body, html {
   <h3>Upload</h3>
  <input type="file" id="files" name="files[]" multiple />
 <output id="list"></output>
+<br>
+<h3>Download</h3>
+<button onclick="download( filetext, 'myfilename.txt', 'text/plain')">Create file</button>
 </div>
 
 
@@ -108,7 +129,7 @@ document.getElementById("hmpg").click();
 </script>
 
 <script>
-function openCity(evt, cityName) {
+function openmini(evt, miniName) {
     var i, minitabcontent, minitablinks;
     minitabcontent = document.getElementsByClassName("minitabcontent");
     for (i = 0; i < minitabcontent.length; i++) {
@@ -118,7 +139,7 @@ function openCity(evt, cityName) {
     for (i = 0; i < minitablinks.length; i++) {
         minitablinks[i].className = minitablinks[i].className.replace(" active", "");
     }
-    document.getElementById(cityName).style.display = "block";
+    document.getElementById(miniName).style.display = "block";
     evt.currentTarget.className += " active";
 }
 </script>
@@ -140,5 +161,37 @@ function openCity(evt, cityName) {
   document.getElementById('files').addEventListener('change', handleFileSelect, false);
 </script>
 
+<script>
+
+var n1 = document.getElementById("num1").value;
+var n2 = document.getElementById("num2").value; 
+var n3 = document.getElementById("num3").value; 
+var n4 = document.getElementById("num4").value; 
+
+var words = document.getElementById("words").value; 
+
+arr = [n1,n2,n3,n4,words]
+function download(data, filename, type) {
+	 filetext = arr;
+    var file = new Blob([data], {type: type});
+    var y = document.createElement("a"),
+               
+        url = URL.createObjectURL(file);
+        y.href = url;
+        y.download = filename;
+        document.body.appendChild(y);
+        y.click();
+        setTimeout(function() {
+            document.body.removeChild(y);
+            window.URL.revokeObjectURL(url);  
+       		 }, 0); 
+   		 }
+
+</script> 
+
+
+
 </body>
 </html> 
+
+  
